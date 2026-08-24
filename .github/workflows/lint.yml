@@ -1,0 +1,17 @@
+name: Lint skill
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  skillscheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # astral-sh/setup-uv ships immutable releases since v8 — only an exact
+      # tag like v10.0.1 resolves, unlike most actions' moving major tags.
+      - uses: astral-sh/setup-uv@v10.0.1
+      - name: Lint skill
+        run: uvx skillscheck . --strict
