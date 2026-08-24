@@ -24,7 +24,7 @@ Not for: balancing rewards/difficulty for a specific server's own economy (that'
 - Plain text, one entry per line. `#` starts a comment; blank lines are ignored.
 - `[Section]` starts a new profile/block. Behavior around capitalization and spacing inside brackets is inconsistent across config types (folded away in most, significant in a few) — rather than tracking which is which, never name two profiles the same text in different casing, and avoid spaces in section names entirely. See pitfalls below.
 - File names don't matter; folder + `[Section]` headers do. One config type can span multiple files and subfolders — everything in a folder is read together.
-- Lines before any `[Section]` land in a profile literally called `default` (intentional, several NPC types default to it).
+- Lines before any `[Section]` land in a profile literally called `default` in most config types (intentional — several NPC types default to it) — except Dialogues and the Quest database, where unlabeled lines before the first header are silently skipped instead of landing anywhere.
 - Any script (Cyrillic, Chinese, etc.) is valid inside a header name.
 - Three separators recur everywhere: `,` between fields in one entry (`Wood, 10, 1`), `|` between multiple entries on one line (`Wood, 10 | Stone, 5`), `||` for OR inside one condition group (only in requirement fields). Spaces around any of these are stripped — write them however is readable.
 - A field that needs a literal space (an NPC's full name, a sentence) must be wrapped in `"double quotes"` — the quotes are stripped, the space survives.
