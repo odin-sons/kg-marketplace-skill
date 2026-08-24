@@ -69,11 +69,7 @@ Full page: [Config file syntax](https://kg-marketplace.pages.dev/concepts/config
 
 ## Common pitfalls (verified against mod source, not guessed)
 
-- **`Configs/Lootboxes/` does nothing.** The folder gets auto-created and even has a Discord webhook template, but nothing in the mod's code parses its contents into an actual lootbox. Don't build content around it.
-- **`PlayerHasOneOfCustomDataKeys` means the opposite of its name** — true when the player's data *differs* from the referenced set on at least one value, not when they "have one of" the listed values. Its sibling `PlayerHasAllCustomDataKeys` behaves as named. Test with known values before relying on either.
-- **`GiveBuff`'s duration argument is capped at 1 second** — any value ≥1 passed to it is silently clamped to 1. Set the buff's own duration on the buff itself instead and omit the argument.
 - **`ConsoleCommand` runs anything**, not a mod-specific whitelist, and briefly force-enables debug mode for that call — including world-editing/cheat commands. Only use it in trusted content.
-- **`Kill` vs `KillAndCollect` star-level fields don't mean the same thing.** `Kill`'s level field gets `+1` added internally before comparing; `KillAndCollect`'s doesn't — write the intended star count plus one on a `KillAndCollect` target.
 - **Profile names that only differ by case, or by spacing, can silently collapse into one profile** in some config types — `[Daily]` in one file and `[daily]` in another may not be two profiles that happen to reference each other, but the *same* profile with contents merged, easy to hit by accident across files from different people or times. Rather than track which config types care: never reuse the same text with different casing for two intended-to-be-different profiles, and don't use spaces in section names at all.
 
 Full, current list: [Known gaps](https://kg-marketplace.pages.dev/reference/known-gaps/). Check it — this list will drift as the mod changes; the live page won't.
