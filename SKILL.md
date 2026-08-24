@@ -22,7 +22,7 @@ Not for: balancing rewards/difficulty for a specific server's own economy (that'
 ## Core syntax (applies to nearly every config type)
 
 - Plain text, one entry per line. `#` starts a comment; blank lines are ignored.
-- `[Section]` starts a new profile/block. Capitalization and spacing inside brackets are folded to lowercase before matching — **except** Territories, which stays case-sensitive (the docs also claim this for Leaderboard Achievements, but that one folds to lowercase too in practice). Two profiles that only differ by case or spacing merge into one instead of staying distinct — see pitfalls below.
+- `[Section]` starts a new profile/block. Behavior around capitalization and spacing inside brackets is inconsistent across config types (folded away in most, significant in a few) — rather than tracking which is which, never name two profiles the same text in different casing, and avoid spaces in section names entirely. See pitfalls below.
 - File names don't matter; folder + `[Section]` headers do. One config type can span multiple files and subfolders — everything in a folder is read together.
 - Lines before any `[Section]` land in a profile literally called `default` (intentional, several NPC types default to it).
 - Any script (Cyrillic, Chinese, etc.) is valid inside a header name.
@@ -74,7 +74,7 @@ Full page: [Config file syntax](https://kg-marketplace.pages.dev/concepts/config
 - **`GiveBuff`'s duration argument is capped at 1 second** — any value ≥1 passed to it is silently clamped to 1. Set the buff's own duration on the buff itself instead and omit the argument.
 - **`ConsoleCommand` runs anything**, not a mod-specific whitelist, and briefly force-enables debug mode for that call — including world-editing/cheat commands. Only use it in trusted content.
 - **`Kill` vs `KillAndCollect` star-level fields don't mean the same thing.** `Kill`'s level field gets `+1` added internally before comparing; `KillAndCollect`'s doesn't — write the intended star count plus one on a `KillAndCollect` target.
-- **Two profiles that only differ by case or spacing silently merge into one**, since matching folds section names to lowercase. `[Daily]` in one file and `[daily]` in another aren't two profiles that happen to reference each other correctly — they're the *same* profile, contents combined — easy to hit by accident across files from different people or times. Doesn't apply to Territories (case-sensitive); does apply to Leaderboard Achievements despite the docs claiming otherwise.
+- **Profile names that only differ by case, or by spacing, can silently collapse into one profile** in some config types — `[Daily]` in one file and `[daily]` in another may not be two profiles that happen to reference each other, but the *same* profile with contents merged, easy to hit by accident across files from different people or times. Rather than track which config types care: never reuse the same text with different casing for two intended-to-be-different profiles, and don't use spaces in section names at all.
 
 Full, current list: [Known gaps](https://kg-marketplace.pages.dev/reference/known-gaps/). Check it — this list will drift as the mod changes; the live page won't.
 
