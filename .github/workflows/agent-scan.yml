@@ -13,6 +13,10 @@ jobs:
       # astral-sh/setup-uv ships immutable releases since v8 — only an exact
       # tag like v10.0.1 resolves, unlike most actions' moving major tags.
       - uses: astral-sh/setup-uv@v10.0.1
+        with:
+          # No requirements.txt/pyproject.toml/uv.lock in this repo for its
+          # default cache-dependency-glob to key off - nothing to cache.
+          enable-cache: false
       - name: Snyk Agent Scan
         run: uvx snyk-agent-scan@latest scan . --ci --dangerously-run-mcp-servers
         env:
