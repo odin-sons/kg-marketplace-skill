@@ -18,6 +18,9 @@ jobs:
           # default cache-dependency-glob to key off - nothing to cache.
           enable-cache: false
       - name: Snyk Agent Scan
-        run: uvx snyk-agent-scan@latest scan . --ci --dangerously-run-mcp-servers
+        # Scan SKILL.md explicitly, not `.` - the whole-directory walk also
+        # descends into .git/, where commit-hash-shaped strings in HEAD/
+        # FETCH_HEAD/logs get flagged as high-entropy secrets.
+        run: uvx snyk-agent-scan@latest scan SKILL.md --ci --dangerously-run-mcp-servers
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
