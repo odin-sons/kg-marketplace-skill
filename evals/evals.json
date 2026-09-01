@@ -1,0 +1,45 @@
+{
+  "skill_name": "kg-marketplace-skill",
+  "evals": [
+    {
+      "id": 0,
+      "name": "eval-trader-quest-npc",
+      "prompt": "I run a Valheim server with Marketplace and Server NPCs (Revamped). I want to add a new NPC named Old Tormund who sells basic building materials, and also hands out one quest where the player brings him 20 Wood and 10 Stone for 100 coins. Can you write the config files for this?",
+      "expected_output": "A correct set of .cfg files under the mod's Configs/ tree — at minimum an NPC entry, a Trader profile, a Quest entry, and a Quest Profile linking the quest to the NPC — using the mod's real current syntax (correct quest type, correct field/separator conventions, correct folder placement) rather than a plausible-looking guess.",
+      "files": [],
+      "assertions": [
+        {"text": "Uses a real quest type from the mod's actual 10 types (Kill/Collect/Harvest/Craft/Talk/Build/Move/KillAndCollect/Use/Activate) rather than a plausible-sounding fabricated one (e.g. 'Deliver', 'FetchQuest')"},
+        {"text": "Reward line uses a real reward-type field prefix (Item:, Skill_EXP:, etc.) rather than an invented one"},
+        {"text": "Both a Trader-type component and a Quest/QuestProfile component are present — not just one of the two systems the prompt actually needs"},
+        {"text": "Config files are placed under folder paths resembling the mod's real Configs/<Subfolder>/ structure (e.g. Configs/Traders/, Configs/Quests/, Configs/QuestProfiles/)"},
+        {"text": "Does not invent named Field: labels for the quest's positional lines (type/title/description/target/reward/cooldown) where the real format has no field labels"}
+      ]
+    },
+    {
+      "id": 1,
+      "name": "eval-guild-condition-debug",
+      "prompt": "On my server I have a dialogue option gated with `Condition: HasGuildWithName, Ironclad` and it's not working right — players in a guild literally named Ironclad still can't see the option as available. Any idea what's going on?",
+      "expected_output": "A helpful, mod-specific diagnosis — ideally pointing at real documented pitfalls (e.g. AlwaysVisible default behavior, case/whitespace sensitivity of guild names, correct argument shape for HasGuildWithName) rather than generic troubleshooting advice that could apply to any scripting language.",
+      "files": [],
+      "assertions": [
+        {"text": "Raises AlwaysVisible's true default as a likely culprit - the option may already be showing (greyed out with a failure reason) rather than truly broken"},
+        {"text": "States the correct argument shape for HasGuildWithName (guild name only, no extra arguments) without inventing a different signature"},
+        {"text": "Does not hallucinate a condition or command name that doesn't exist in the mod"},
+        {"text": "Gives at least one concrete, mod-specific next diagnostic step rather than only generic scripting-debugging advice"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "eval-hidden-boss-quest-chain",
+      "prompt": "I want to set up a 3-quest chain ending in a hidden boss fight — the final quest (kill a boss creature) should stay completely invisible in the quest list until the first two are done, so it's a surprise. How do I build this with the mod's quest system?",
+      "expected_output": "Correct use of quest chain unlock requirements (QuestFinished conditions) plus the correct special quest header tag for staying hidden until prerequisites are met (HiddenOtherQuestCondition, not the more permissive HiddenAnyCondition or no tag at all) — a subtle distinction the mod's docs call out explicitly.",
+      "files": [],
+      "assertions": [
+        {"text": "Uses QuestFinished chain conditions correctly to gate each quest on the prior one's completion"},
+        {"text": "Specifically recommends HiddenOtherQuestCondition for the final quest, not the more permissive HiddenAnyCondition and not leaving the tag off entirely"},
+        {"text": "Shows the correct header tag syntax, e.g. [quest_id = HiddenOtherQuestCondition]"},
+        {"text": "Does not confuse this with Quest Profile visibility or some unrelated hiding mechanism"}
+      ]
+    }
+  ]
+}

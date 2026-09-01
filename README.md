@@ -21,6 +21,8 @@ It doesn't vendor a copy of the docs — [`SKILL.md`](SKILL.md) links out to the
 
 `SKILL.md` itself is 79 lines / ~2.4k tokens — well inside the spec's recommended budget (<500 lines, <5k tokens) for what stays loaded whenever the skill triggers.
 
+**Does it actually help?** [Evals](evals/) compare an agent with this skill against one without, on realistic tasks, graded against fixed assertions: **100% (13/13) with the skill vs. 23% (3/13) without.**
+
 ## Install
 
 **Claude Code** — clone into your skills directory:
