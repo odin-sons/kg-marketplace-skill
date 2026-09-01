@@ -1,0 +1,25 @@
+name: Skill gave wrong or outdated advice
+description: The skill told an agent (or you, reading it directly) something about the mod that turned out to be wrong.
+labels: ["inaccuracy"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What the skill said, and what was actually true
+      description: Quote the relevant part of SKILL.md if you can point to it, and what the mod actually does.
+    validations:
+      required: true
+  - type: input
+    id: mod-version
+    attributes:
+      label: Mod version you tested against
+      description: See the top of https://kg-marketplace.pages.dev/reference/changelog/ for the current version.
+    validations:
+      required: false
+  - type: textarea
+    id: repro
+    attributes:
+      label: How to reproduce
+      description: The config you wrote, the prompt you gave an agent, or the steps that surfaced this.
+    validations:
+      required: false

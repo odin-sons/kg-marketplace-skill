@@ -19,6 +19,8 @@ Point an agent at this skill when a server admin needs to:
 
 It doesn't vendor a copy of the docs — [`SKILL.md`](SKILL.md) links out to the canonical reference at [kg-marketplace.pages.dev](https://kg-marketplace.pages.dev/) (also fetchable in one shot as [`llms-full.txt`](https://kg-marketplace.pages.dev/llms-full.txt)), so it stays correct as the mod changes instead of drifting stale.
 
+`SKILL.md` itself is 79 lines / ~2.4k tokens — well inside the spec's recommended budget (<500 lines, <5k tokens) for what stays loaded whenever the skill triggers.
+
 ## Install
 
 **Claude Code** — clone into your skills directory:
@@ -50,3 +52,5 @@ SNYK_TOKEN=<your token> uvx snyk-agent-scan@latest scan . --ci
 ```
 
 Needs an API token from [app.snyk.io/account](https://app.snyk.io/account) to run locally — [`agent-scan`](https://github.com/snyk/agent-scan)'s own docs don't specify whether a free-tier Snyk account is sufficient.
+
+None of these checks whether `SKILL.md`'s *content* is actually correct — see [CONTRIBUTING.md](CONTRIBUTING.md) for how that's verified, and how to report it when it isn't.
