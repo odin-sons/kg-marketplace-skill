@@ -39,20 +39,4 @@ git clone https://github.com/odin-sons/kg-marketplace-skill.git .claude/skills/k
 
 ## Development
 
-[`SKILL.md`](SKILL.md) is the whole skill. CI lints it on every push/PR with [`skillscheck`](https://github.com/agentskills/agentskills) in strict mode:
-
-```bash
-uvx skillscheck . --strict
-```
-
-On Windows, run it with `PYTHONIOENCODING=utf-8` set — `skillscheck`'s own info symbols crash under the default console codepage.
-
-CI also runs [`snyk-agent-scan`](https://github.com/snyk/agent-scan) on every push/PR, checking `SKILL.md` itself for prompt-injection, tool-poisoning, and similar risks an agent skill could carry:
-
-```bash
-SNYK_TOKEN=<your token> uvx snyk-agent-scan@latest scan . --ci
-```
-
-Needs an API token from [app.snyk.io/account](https://app.snyk.io/account) to run locally — [`agent-scan`](https://github.com/snyk/agent-scan)'s own docs don't specify whether a free-tier Snyk account is sufficient.
-
-None of these checks whether `SKILL.md`'s *content* is actually correct — see [CONTRIBUTING.md](CONTRIBUTING.md) for how that's verified, and how to report it when it isn't.
+[`SKILL.md`](SKILL.md) is the whole skill. See [CONTRIBUTING.md](CONTRIBUTING.md) for what CI checks on every push/PR (spec compliance, security, link rot), how to run those checks locally, and — the thing none of them can check — how `SKILL.md`'s factual claims get verified and reported when wrong.

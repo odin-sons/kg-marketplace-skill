@@ -10,6 +10,20 @@ Three automated checks run on every push/PR:
 
 None of these can tell you whether a claim in `SKILL.md` is *true*. "`HasGuildWithName` takes one argument" passes all three checks whether or not that's actually how the condition behaves in the current mod version. That's a gap no linter closes — it needs a human (or an agent doing real verification work) checking the claim against something authoritative.
 
+## Running the checks locally
+
+```bash
+uvx skillscheck . --strict
+```
+
+On Windows, run it with `PYTHONIOENCODING=utf-8` set — `skillscheck`'s own info symbols crash under the default console codepage.
+
+```bash
+SNYK_TOKEN=<your token> uvx snyk-agent-scan@latest scan . --ci
+```
+
+Needs an API token from [app.snyk.io/account](https://app.snyk.io/account) — [`agent-scan`](https://github.com/snyk/agent-scan)'s own docs don't specify whether a free-tier Snyk account is sufficient.
+
 ## Verifying a claim before adding it
 
 This skill covers the mod's config format and systems, not just what plausibly sounds right. Before adding or changing a factual claim in `SKILL.md`:
