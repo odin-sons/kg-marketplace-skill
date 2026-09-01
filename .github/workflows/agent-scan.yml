@@ -17,10 +17,13 @@ jobs:
           # No requirements.txt/pyproject.toml/uv.lock in this repo for its
           # default cache-dependency-glob to key off - nothing to cache.
           enable-cache: false
+      # Nothing after this step needs git - drop .git/ before scanning so
+      # commit-hash-shaped strings in HEAD/FETCH_HEAD/logs don't get flagged
+      # as high-entropy secrets. Scanning SKILL.md as a bare file path
+      # instead of `.` was tried first and made the scanner unable to
+      # collect/name the skill at all ("could not collect skill files").
+      - run: rm -rf .git
       - name: Snyk Agent Scan
-        # Scan SKILL.md explicitly, not `.` - the whole-directory walk also
-        # descends into .git/, where commit-hash-shaped strings in HEAD/
-        # FETCH_HEAD/logs get flagged as high-entropy secrets.
-        run: uvx snyk-agent-scan@latest scan SKILL.md --ci --dangerously-run-mcp-servers
+        run: uvx snyk-agent-scan@latest scan . --ci --dangerously-run-mcp-servers
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
