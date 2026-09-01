@@ -19,9 +19,7 @@ Point an agent at this skill when a server admin needs to:
 
 It doesn't vendor a copy of the docs — [`SKILL.md`](SKILL.md) links out to the canonical reference at [kg-marketplace.pages.dev](https://kg-marketplace.pages.dev/) (also fetchable in one shot as [`llms-full.txt`](https://kg-marketplace.pages.dev/llms-full.txt)), so it stays correct as the mod changes instead of drifting stale.
 
-`SKILL.md` itself is 79 lines / ~2.4k tokens — well inside the spec's recommended budget (<500 lines, <5k tokens) for what stays loaded whenever the skill triggers.
-
-**Does it actually help?** [Evals](evals/) compare an agent with this skill against one without, on realistic tasks, graded against fixed assertions: **100% (13/13) with the skill vs. 23% (3/13) without.**
+**Does it actually help?** [`evals/`](evals/) compares an agent with this skill against one without, on realistic tasks, graded against fixed assertions — methodology and dated results there rather than a number here that would go stale the next time `SKILL.md` changes.
 
 ## Install
 
