@@ -1,5 +1,6 @@
 # kg-marketplace-skill
 
+[![Lint skill](https://github.com/odin-sons/kg-marketplace-skill/actions/workflows/lint.yml/badge.svg)](https://github.com/odin-sons/kg-marketplace-skill/actions/workflows/lint.yml)
 [![Agent security scan](https://github.com/odin-sons/kg-marketplace-skill/actions/workflows/agent-scan.yml/badge.svg)](https://github.com/odin-sons/kg-marketplace-skill/actions/workflows/agent-scan.yml)
 
 An [Agent Skill](https://agentskills.io/specification) that helps AI agents author and validate config files for the Valheim mod **Marketplace and Server NPCs (Revamped)** — quests, NPCs, dialogues, traders, factions, and every other `Configs/` system the mod ships.
