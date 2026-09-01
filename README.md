@@ -1,5 +1,7 @@
 # kg-marketplace-skill
 
+[![Agent security scan](https://github.com/odin-sons/kg-marketplace-skill/actions/workflows/agent-scan.yml/badge.svg)](https://github.com/odin-sons/kg-marketplace-skill/actions/workflows/agent-scan.yml)
+
 An [Agent Skill](https://agentskills.io/specification) that helps AI agents author and validate config files for the Valheim mod **Marketplace and Server NPCs (Revamped)** — quests, NPCs, dialogues, traders, factions, and every other `Configs/` system the mod ships.
 
 General-purpose by design: it covers the mod's config *format and systems*, not any one server's balance choices. A different server's quest rewards or shop prices are none of this skill's business.
@@ -38,3 +40,11 @@ uvx skillscheck . --strict
 ```
 
 On Windows, run it with `PYTHONIOENCODING=utf-8` set — `skillscheck`'s own info symbols crash under the default console codepage.
+
+CI also runs [`snyk-agent-scan`](https://github.com/snyk/agent-scan) on every push/PR, checking `SKILL.md` itself for prompt-injection, tool-poisoning, and similar risks an agent skill could carry:
+
+```bash
+SNYK_TOKEN=<your token> uvx snyk-agent-scan@latest scan . --ci
+```
+
+Needs an API token from [app.snyk.io/account](https://app.snyk.io/account) to run locally — [`agent-scan`](https://github.com/snyk/agent-scan)'s own docs don't specify whether a free-tier Snyk account is sufficient.
