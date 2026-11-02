@@ -17,13 +17,13 @@
     },
     {
       "id": 1,
-      "name": "eval-guild-condition-debug",
-      "prompt": "On my server I have a dialogue option gated with `Condition: HasGuildWithName, Ironclad` and it's not working right — players in a guild literally named Ironclad still can't see the option as available. Any idea what's going on?",
-      "expected_output": "A helpful, mod-specific diagnosis — ideally pointing at real documented pitfalls (e.g. AlwaysVisible default behavior, case/whitespace sensitivity of guild names, correct argument shape for HasGuildWithName) rather than generic troubleshooting advice that could apply to any scripting language.",
+      "name": "eval-faction-condition-debug",
+      "prompt": "On my server I have a dialogue option gated with `Condition: HasFaction, Ironclad` and it's not working right — players in a faction literally named Ironclad still can't see the option as available. Any idea what's going on?",
+      "expected_output": "A helpful, mod-specific diagnosis — ideally pointing at real documented pitfalls (e.g. AlwaysVisible default behavior, case/whitespace sensitivity of faction keys, correct argument shape for HasFaction) rather than generic troubleshooting advice that could apply to any scripting language.",
       "files": [],
       "assertions": [
         {"text": "Raises AlwaysVisible's true default as a likely culprit - the option may already be showing (greyed out with a failure reason) rather than truly broken"},
-        {"text": "States the correct argument shape for HasGuildWithName (guild name only, no extra arguments) without inventing a different signature"},
+        {"text": "States the correct argument shape for HasFaction (faction key only, no extra arguments) without inventing a different signature"},
         {"text": "Does not hallucinate a condition or command name that doesn't exist in the mod"},
         {"text": "Gives at least one concrete, mod-specific next diagnostic step rather than only generic scripting-debugging advice"}
       ]
