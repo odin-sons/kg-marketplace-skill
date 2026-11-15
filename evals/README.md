@@ -19,7 +19,7 @@ The one assertion each baseline run did pass was usually "didn't hallucinate a s
 
 The skill isn't free: with-skill runs took ~2.3x longer on average (172s vs 73s, driven by fetching the live docs pages) and used noticeably more tokens. That's the expected cost of checking real documentation instead of guessing.
 
-(*) This eval was run against mod 10.0.3. Since 10.0.8 the guild conditions are no longer built in, so [`evals.json`](evals.json) now asks the same question about `HasFaction`; that version has not been re-run, and the numbers above are for the original wording.
+(*) This eval was run against mod 10.0.3. Since 10.0.9 the guild conditions are no longer built in (they need the Guilds bridge), so [`evals.json`](evals.json) now asks the same question about `HasFaction`; that version has not been re-run, and the numbers above are for the original wording.
 
 The strongest single result was the guild-condition eval — the skill traced the report to something neither the eval's author nor the baseline anticipated: `HasGuildWithName` and the rest of the Guild condition family only function if a separate third-party guild mod is installed, and it confirmed that against [Known gaps](https://kg-marketplace.pages.dev/reference/known-gaps/) before presenting it as the likely cause rather than a guess.
 
